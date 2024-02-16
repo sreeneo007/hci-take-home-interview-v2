@@ -6,12 +6,13 @@ So instead of coding at a whiteboard with someone watching over your shoulder un
 
 The Brief:
 
-_“A Health Care Informed customer needs to be able to_ **_find patient visit information_** _at one of their hospitals. Create a simple web application using React, Typescript, C# and a DB that allows a customer to_ **_search_** _patient/hospital visit information and display results. The application should have a very simple styled UX, some simple API’s and a basic data store”._
+_“A Health Care Informed customer needs to be able to_ **_find patient visit information_** _at one of their hospitals. Create a simple web application using React, Typescript, C# that allows a customer to_ **_search_** _patient/hospital visit information and display results. The application should have a very simple styled UX, some simple API’s and leverages the data store and sample data provided”._
 
 **Guidelines**
-
-* Fork the repo into your own GitHub Repository. I've provided boiler plate with an in memory database and test date to help you move faster
+ 
 * Don’t spend too long on it (~4 hours) and keep things simple. This is not a time limit just a guideline.
+* Fork the repo into your own GitHub Repository. I've provided boiler plate with an in memory database and test data to help you move faster.
+* Add functionality to the [PatientService](https://github.com/vinnyhci/hci-take-home-interview-v2/blob/main/PatientAdministrationSystem.Application/Services/PatientsService.cs)/[IPatientService](https://github.com/vinnyhci/hci-take-home-interview-v2/blob/main/PatientAdministrationSystem.Application/Services/Interfaces/IPatientsService.cs) (app/business layer) and PatientsRepository (data layer) that query the HCIDataContext (database) and add your API contracts to the [PatientsController](https://github.com/vinnyhci/hci-take-home-interview-v2/blob/main/PatientAdministrationSystem/Controllers/PatientsController.cs). Please define strong interfaces here, return types etc.
 * Don’t worry about:
   * Authentication 
   * Adding tests
