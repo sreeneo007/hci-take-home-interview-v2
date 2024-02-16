@@ -10,6 +10,7 @@ _“A Health Care Informed customer needs to be able to_ **_find patient visit i
 
 **Guidelines**
 
+* Fork the repo into your own GitHub Repository
 * Don’t spend too long on it (~4 hours) and keep things simple. This is not a time limit just a guideline.
 * Don’t worry about:
   * Authentication 
