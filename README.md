@@ -10,7 +10,7 @@ _“A Health Care Informed customer needs to be able to_ **_find patient visit i
 
 **Guidelines**
 
-* Fork the repo into your own GitHub Repository
+* Fork the repo into your own GitHub Repository. I've provided boiler plate with an in memory database and test date to help you move faster
 * Don’t spend too long on it (~4 hours) and keep things simple. This is not a time limit just a guideline.
 * Don’t worry about:
   * Authentication 
@@ -19,7 +19,7 @@ _“A Health Care Informed customer needs to be able to_ **_find patient visit i
   *  Solve the customer problem in any way you like
   *  The deliverable is well packaged and easy for us to test
   *  Clearly communicate any assumptions you want to make, shortcuts you take etc.
-  *  Spend your time in the right places based on your strengths - e.g. use an in memory DB if it's faster for you, or find an easy way to provide data to the application
+  *  Spend your time in the right places based on your strengths - e.g. take shortcuts and document them if it makes sense to
   *  Share a screen recording with a short demo of the application (max 5 mins - can use [Loom](https://www.loom.com/)) OR deploy to Azure [free tier services](https://azure.microsoft.com/en-us/pricing/free-services) so we can see what it looks like. Whatever works better for you.
 * What I'm mainly looking for:
   * You structure your front and back end code well so it's clean, modular & well organised. Attention to detail important.
@@ -31,8 +31,3 @@ _“A Health Care Informed customer needs to be able to_ **_find patient visit i
 **Next:** 
 
 * When you’re done, **send us a link to the Github project and the Azure link / Loom** to vinny.lawlor@hci.care - it will be reviewed by engineering and the CTO within 2 days.
-
-<!---->
-
-* In the next interview stage we will talk to you about your code and do a systems design type question - we’ll talk about your choices, and what decisions/trade offs you’d make as the system scales.
-* No coding required in the face to face but we want to see how you think about problem solving when customer constraints change - it’ll be more of a system design discussion.
