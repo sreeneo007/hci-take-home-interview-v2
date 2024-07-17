@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>Patient Visit Check</h1>
+    <div>
+      <input type="text" [(ngModel)]="query" id="searchQuery" name="searchQuery" placeholder="Enter patient details (first name, last name, or email address)" />
+      <button (click)="searchPatients()">Search</button>
+    </div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="noResults" class="no-results">No visit information found.</div>
+    <div *ngIf="patients.length > 0">
+      <h2>Search Results</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Hospital</th>
+            <th>Visit Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let patient of patients">
+              <td>{{ patient.firstName }} {{ patient.lastName }}</td>
+              <td>{{ patient.email }}</td>
+              <td *ngIf="patient.patientHospitals?.$values?.length > 0">
+                <ng-container *ngFor="let hospital of patient.patientHospitals.$values">
+                  {{ hospital.hospital.name }}
+                </ng-container>
+              </td>
+              <td *ngIf="patient.patientHospitals?.$values?.length > 0">
+                <ng-container *ngFor="let hospital of patient.patientHospitals.$values">
+                  {{ hospital.visit?.date ? (hospital.visit.date | date: 'shortDate') : 'No visit information' }}
+                </ng-container>
+              </td>
+              <td *ngIf="!patient.patientHospitals || patient.patientHospitals.$values?.length === 0" colspan="2">
+                No visit
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>

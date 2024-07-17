@@ -1,34 +1,94 @@
-## Technical assessment - take home 
+# Patient Administration System
 
-We are a very practical team at Health Care Informed and this extends to the way that we work with you to find out if this team is a great fit for you. We want you to come away with a great understanding of the work that we actually do day to day and what it is like to work with us. 
+Welcome to the Patient Administration System solution. This repository contains both the back-end Web API and the front-end Angular application. 
 
-So instead of coding at a whiteboard with someone watching over your shoulder under high pressure, which is not a thing we often do, we instead discuss code that you have written previously when we meet face to face.
+The system allows users to manage patient information and their hospital visits efficiently.
 
-The Brief:
+## Features:-
 
-_“A Health Care Informed customer needs to be able to_ **_find patient visit information_** _at one of their hospitals. Create a simple web application using React, Typescript, C# that allows a customer to_ **_search_** _patient/hospital visit information and display results. The application should have a very simple styled UX, some simple API’s and leverages the data store and sample data provided”._
+### Web API
+- **Patient Management**: Search for patients by their first name, last name, or email.
+- **Hospital Visit Management**: Track and manage patient hospital visits.
+- **Data Access**: Utilizes Entity Framework Core for data access.
 
-**Guidelines**
- 
-* Don’t spend too long on it (~4 hours) and keep things simple. This is not a time limit just a guideline.
-* Fork the repo into your own GitHub Repository. I've provided boiler plate with an in memory database and test data to help you move faster.
-* Add functionality to the [PatientService](https://github.com/vinnyhci/hci-take-home-interview-v2/blob/main/PatientAdministrationSystem.Application/Services/PatientsService.cs)/[IPatientService](https://github.com/vinnyhci/hci-take-home-interview-v2/blob/main/PatientAdministrationSystem.Application/Services/Interfaces/IPatientsService.cs) (app/business layer) and PatientsRepository (data layer) that query the HCIDataContext (database) and add your API contracts to the [PatientsController](https://github.com/vinnyhci/hci-take-home-interview-v2/blob/main/PatientAdministrationSystem/Controllers/PatientsController.cs). Please define strong interfaces here, return types etc.
-* Don’t worry about:
-  * Authentication 
-  * Adding tests
-* Do focus on:
-  *  Solve the customer problem in any way you like
-  *  The deliverable is well packaged and easy for us to test
-  *  Clearly communicate any assumptions you want to make, shortcuts you take etc.
-  *  Spend your time in the right places based on your strengths - e.g. take shortcuts and document them if it makes sense to
-  *  Share a screen recording with a short demo of the application (max 5 mins - can use [Loom](https://www.loom.com/)) OR deploy to Azure [free tier services](https://azure.microsoft.com/en-us/pricing/free-services) so we can see what it looks like. Whatever works better for you.
-* What I'm mainly looking for:
-  * You structure your front and back end code well so it's clean, modular & well organised. Attention to detail important.
-  * How do the well do the components talk to each other on FE, API's and BE structure. These interfaces are important.
-  * You understand the customer requirement and make sensible trade offs for feature quality versus **keeping it simple**.
-  * How easy is it for us to test and run
-* Think of this like an open source project. Create a repo on Github, use git for source control, and use README.md to document what you built for the newcomer to your project, create PR’s etc like you normally would.
+### Angular Front-end
+- **Patient Search**: Provides a user-friendly interface to search for patient details.
 
-**Next:** 
+## Solution Structure
 
-* When you’re done, **send us a link to the Github project and the Azure link / Loom** to vinny.lawlor@hci.care - it will be reviewed by engineering and the CTO within 2 days.
+The solution is structured as follows:
+
+PatientAdministrationSystem
+├── PatientAdministrationSystem.sln
+├── PatientAdministrationSystem.Application
+│ ├── PatientAdministrationSystem.Application.csproj
+├── PatientAdministrationSystem.Infra
+│ ├── PatientAdministrationSystem.Infra.csproj
+├── PatientAdministrationSystem.API
+│ ├── Dockerfile
+│ ├── PatientAdministrationSystem.API.csproj
+│ ├── Program.cs
+│ ├── Controllers
+│ ├── Models
+├── PatientAdministrationSystem.Tests
+│ ├── PatientAdministrationSystem.Tests.csproj
+├── PatientAdministrationSystem.UI
+│ ├── Dockerfile
+│ ├── angular.json
+│ ├── package.json
+│ ├── src
+└── docker-compose.yml
+
+## Prerequisites
+
+- .NET 8.0 or later
+- Node.js and npm
+- Docker
+
+
+## Setup Instructions
+
+
+1. Running the Back-end Only (Web API)
+2. Open the solution: PatientAdministrationSystem.sln in Visual Studio.
+3. Restore NuGet packages: Build the solution to restore all NuGet packages.
+4. Run the Web API project (PatientAdministrationSystem.API).
+5. Access the API: Open your browser and navigate to http://localhost:5272/swagger/.
+
+
+### Front-end (Angular)
+
+1. Navigate to the `PatientAdministrationSystem.UI` directory.
+2. Install Angular CLI globally if not already installed:
+   ```sh
+   npm install -g @angular/cli
+   
+3. Install project dependencies
+     npm install
+	 
+4. Run the Angular application:
+    ng serve
+	
+5. Open your browser and navigate to http://localhost:4200.
+
+### Running Test (Angular)
+
+Back-end Tests:-
+Open the PatientAdministrationSystem.sln in Visual Studio.
+Run the tests in the PatientAdministrationSystem.Tests project using the Test Explorer.
+
+You can also try running the application alternatively through Docker :-
+
+### Running the Full Application with Docker Compose
+
+This method will run both the back-end Web API and the front-end Angular application together.
+
+1. **Ensure Docker is installed and running**.
+2. **Clone the repository**:
+3. Build and run the containers
+   docker-compose up --build
+4. Access the applications:
+	Angular Application: Open your browser and navigate to http://localhost:4200.
+	ASP.NET Core Web API: Open your browser and navigate to http://localhost:5272/swagger.
+
+

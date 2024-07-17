@@ -7,6 +7,7 @@ using PatientAdministrationSystem.Application.Repositories.Interfaces;
 using PatientAdministrationSystem.Application.Services;
 using PatientAdministrationSystem.Infrastructure;
 using PatientAdministrationSystem.Infrastructure.Repositories;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,11 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<IPatientsRepository, PatientsRepository>();
 builder.Services.AddScoped<IPatientsService, PatientsService>();
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
 
 builder.Services.AddDbContext<HciDataContext>(options =>
     options.UseInMemoryDatabase("InMemoryDatabase"));
@@ -62,19 +68,32 @@ builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 using (var serviceScope = app.Services.CreateScope())
 {
     var dbContext = serviceScope.ServiceProvider.GetRequiredService<HciDataContext>();
 
     // In real world do a proper migration, but here's the test data
 
-    dbContext.Hospitals.Add(new HospitalEntity
+    var hospital1 = new HospitalEntity
     {
         Id = new Guid("ff0c022e-1aff-4ad8-2231-08db0378ac98"),
-        Name = "Default hospital"
-    });
+        Name = "Community Hospital"
+    };
+    var hospital2 = new HospitalEntity
+    {
+        Id = new Guid("9ca78c33-4590-43c1-a7c4-55696a5efd44"),
+        Name = "General Hospital"
+    };
+    dbContext.Hospitals.AddRange(hospital1, hospital2);    
 
-    dbContext.Patients.Add(new PatientEntity
+    var patient1 = new PatientEntity
     {
         Id = new Guid("c00b9ff3-b1b6-42fe-8b5a-4c28408fb64a"),
         FirstName = "John",
@@ -85,27 +104,63 @@ using (var serviceScope = app.Services.CreateScope())
             new()
             {
                 PatientId = new Guid("c00b9ff3-b1b6-42fe-8b5a-4c28408fb64a"),
-                HospitalId = new Guid("ff0c022e-1aff-4ad8-2231-08db0378ac98"),
+                HospitalId = hospital1.Id,
                 VisitId = new Guid("a7a5182a-995c-4bce-bce0-6038be112b7b")
+            },
+            new()
+            {
+                PatientId = new Guid("c00b9ff3-b1b6-42fe-8b5a-4c28408fb64a"),
+                HospitalId = hospital2.Id,
+                VisitId = new Guid("b7a5182a-995c-4bce-bce0-6038be112b7c")
             }
         }
-    });
-    dbContext.Patients.Add(
-        new PatientEntity
-        {
-            Id = new Guid("1ec2d3f7-8aa8-4bf5-91b8-045378919049"),
-            FirstName = "Vinny",
-            LastName = "Lawlor",
-            Email = "vinny.lawlor@hci.care"
-        });
+    };
 
-    dbContext.Visits.Add(
-        new VisitEntity
+    var patient2 = new PatientEntity
+    {
+        Id = new Guid("1ec2d3f7-8aa8-4bf5-91b8-045378919049"),
+        FirstName = "Vinny",
+        LastName = "Lawlor",
+        Email = "vinny.lawlor@hci.care",
+        PatientHospitals = new List<PatientHospitalRelation>
         {
-            Id = new Guid("a7a5182a-995c-4bce-bce0-6038be112b7b"),
-            Date = new DateTime(2023, 08, 22)
-        });
+            new()
+            {
+                PatientId = new Guid("1ec2d3f7-8aa8-4bf5-91b8-045378919049"),
+                HospitalId = hospital1.Id,
+                VisitId = new Guid("c7a5182a-995c-4bce-bce0-6038be112b7d")
+            }
+        }
+    };
 
+    var patient3 = new PatientEntity
+    {
+        Id = Guid.NewGuid(),
+        FirstName = "test",
+        LastName = "example",
+        Email = "test.Example@hci.care"
+        // No PatientHospitalRelation for this patient
+    };
+
+    dbContext.Patients.AddRange(patient1, patient2, patient3);  
+
+    dbContext.Visits.AddRange(
+       new VisitEntity
+       {
+           Id = new Guid("a7a5182a-995c-4bce-bce0-6038be112b7b"),
+           Date = new DateTime(2023, 08, 22)
+       },
+       new VisitEntity
+       {
+           Id = new Guid("b7a5182a-995c-4bce-bce0-6038be112b7c"),
+           Date = new DateTime(2023, 09, 01)
+       },
+       new VisitEntity
+       {
+           Id = new Guid("c7a5182a-995c-4bce-bce0-6038be112b7d"),
+           Date = new DateTime(2023, 09, 15)
+       }
+   );
 
     dbContext.SaveChanges();
 }

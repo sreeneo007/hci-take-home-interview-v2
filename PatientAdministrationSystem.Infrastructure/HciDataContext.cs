@@ -31,39 +31,53 @@ public class HciDataContext : DbContext, IHciDataContext
                 new HospitalEntity
                 {
                     Id = new Guid("ff0c022e-1aff-4ad8-2231-08db0378ac98"),
-                    Name = "Default hospital"
+                    Name = "Community Hospital"
+                },
+                new HospitalEntity
+                {
+                    Id = new Guid("9ca78c33-4590-43c1-a7c4-55696a5efd44"),
+                    Name = "General Hospital"
                 }
             );
 
         modelBuilder.Entity<PatientEntity>();
-
+        
         modelBuilder.Entity<PatientEntity>()
-            .HasData(
-                new PatientEntity
-                {
-                    Id = new Guid("c00b9ff3-b1b6-42fe-8b5a-4c28408fb64a"),
-                    FirstName = "Aliaksandr",
-                    LastName = "Huzen",
-                    Email = "huzen.av@gmail.com"
-                }
-                , new PatientEntity
-                {
-                    Id = new Guid("1ec2d3f7-8aa8-4bf5-91b8-045378919049"),
-                    FirstName = "Vinny",
-                    LastName = "Lawlor",
-                    Email = "vinny.lawlor@hci.care"
-                }
-            );
-
+                    .HasData(
+                        new PatientEntity
+                        {
+                            Id = new Guid("c00b9ff3-b1b6-42fe-8b5a-4c28408fb64a"),
+                            FirstName = "Aliaksandr",
+                            LastName = "Huzen",
+                            Email = "huzen.av@gmail.com"
+                        },
+                        new PatientEntity
+                        {
+                            Id = new Guid("1ec2d3f7-8aa8-4bf5-91b8-045378919049"),
+                            FirstName = "Vinny",
+                            LastName = "Lawlor",
+                            Email = "vinny.lawlor@hci.care"
+                        }
+                    );
 
         modelBuilder.Entity<VisitEntity>()
-            .HasData(
-                new VisitEntity
-                {
-                    Id = new Guid("a7a5182a-995c-4bce-bce0-6038be112b7b"),
-                    Date = new DateTime(2023, 08, 22)
-                }
-            );
+              .HasData(
+                  new VisitEntity
+                  {
+                      Id = new Guid("a7a5182a-995c-4bce-bce0-6038be112b7b"),
+                      Date = new DateTime(2023, 08, 22)
+                  },
+                  new VisitEntity
+                  {
+                      Id = new Guid("b7a5182a-995c-4bce-bce0-6038be112b7c"),
+                      Date = new DateTime(2023, 09, 01)
+                  },
+                  new VisitEntity
+                  {
+                      Id = new Guid("c7a5182a-995c-4bce-bce0-6038be112b7d"),
+                      Date = new DateTime(2023, 09, 15)
+                  }
+              );
 
         modelBuilder.Entity<PatientHospitalRelation>()
             .HasKey(x => new { x.PatientId, x.HospitalId, x.VisitId });
