@@ -103,6 +103,7 @@ This method will run both the back-end Web API and the front-end React applicati
 
 3. Build and run the containers.
     Command:docker-compose up --build
+   
 4.Access the applications:
 	React Application: Open your browser and navigate to http://localhost:5173.
 	ASP.NET Core Web API: Open your browser and navigate to http://localhost:5272/swagger.
