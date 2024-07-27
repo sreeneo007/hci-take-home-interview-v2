@@ -72,14 +72,14 @@ PatientAdministrationSystem/
 
 ## Front-end (React)
 1. Navigate to the PatientAdministrationSystem.UI directory.
-2.  Install the necessary npm packages.
-   	npm install
-3. Create a .env file in the root of the PatientAdministrationSystem.UI directory with the following content:
+2.  Install the necessary npm packages
+   Command:  npm install
+4. Create a .env file in the root of the PatientAdministrationSystem.UI directory with the following content:-
    	VITE_API_LOCAL_BASE_URL=http://localhost:5272/api
 	VITE_API_REMOTE_BASE_URL=https://patientadminapi.azurewebsites.net/api
-4. Start the development server.
-   npm run dev
-5. Open your browser and navigate to http://localhost:5173.
+6. Start the development server.
+    Command:npm run dev
+8. Open your browser and navigate to http://localhost:5173.
    
 
 ## Running Tests
@@ -89,7 +89,7 @@ Back-end Tests:-
 
 Front-end Tests:- 
 1. To run the unit tests for the frontend:
-   	npm test
+    Command:npm test
 
 You can also try running the application alternatively through Docker :-
 
@@ -102,7 +102,7 @@ This method will run both the back-end Web API and the front-end React applicati
 2. Clone the repository.
 
 3. Build and run the containers.
-	docker-compose up --build
+    Command:docker-compose up --build
 4.Access the applications:
 	React Application: Open your browser and navigate to http://localhost:5173.
 	ASP.NET Core Web API: Open your browser and navigate to http://localhost:5272/swagger.
