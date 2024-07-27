@@ -1,0 +1,38 @@
+/* General styles */
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    flex-direction: column;
+}
+
+#root {
+    max-width: 900px;
+    margin: 20px auto 0;
+    width: 100%;
+}
+
+/* Header styles */
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 3rem;  
+    margin-bottom: 50px;
+    margin-left:180px;
+    margin-right:0px;
+    display: flex;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+
+

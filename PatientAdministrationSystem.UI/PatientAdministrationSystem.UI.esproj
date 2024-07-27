@@ -1,16 +1,15 @@
 <Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.271090-alpha">
   <PropertyGroup>
-    <StartupCommand>npm start</StartupCommand>
-    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+    <StartupCommand>npm run dev</StartupCommand>
+    <JavaScriptTestRoot>src\</JavaScriptTestRoot>
+    <JavaScriptTestFramework>Jest</JavaScriptTestFramework>
     <!-- Allows the build (or compile) script located on package.json to run on Build -->
     <ShouldRunBuildScript>false</ShouldRunBuildScript>
     <!-- Folder where production build objects will be placed -->
-    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\PatientAdministrationSystem.UI\</BuildOutputFolder>
+    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\.dockerignore">
-      <DependentUpon>$(DockerDefaultDockerfile)</DependentUpon>
-      <Link>.dockerignore</Link>
-    </None>
+    <Folder Include="src\components\__tests__\" />
+    <Folder Include="src\__mocks__\" />
   </ItemGroup>
 </Project>

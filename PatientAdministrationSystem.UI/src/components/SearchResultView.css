@@ -1,0 +1,52 @@
+/* Results table styles */
+
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+    table th,
+    table td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+        font-size: 1.1rem;
+        color: #333; /* Ensure text is visible */
+    }
+
+    table th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    table tr td {
+        border-color: #ccc;
+    }
+
+    
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* No results message */
+.no-results {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+}

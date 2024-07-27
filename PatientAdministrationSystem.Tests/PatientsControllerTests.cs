@@ -71,6 +71,27 @@ namespace PatientAdministrationSystem.Tests
             var objectResult = Assert.IsType<ObjectResult>(result);
             Assert.Equal(500, objectResult.StatusCode);
         }
-    }
-        
+
+        [Fact]
+        public async Task GetAllPatients_ShouldReturnOk_WithAllPatients()
+        {
+            // Arrange
+            var expectedPatients = new List<PatientEntity>
+            {
+                new PatientEntity { FirstName = "John", LastName = "Sweeney", Email = "john.Sweeney@hci.care.com" },
+                new PatientEntity { FirstName = "Vinny", LastName = "lawlor", Email = "vinny.lawlor@hci.care.com" }
+            };
+
+            _serviceMock.Setup(service => service.GetAllPatientsAsync())
+                .ReturnsAsync(expectedPatients);
+
+            // Act
+            var result = await _patientsController.GetAllPatients();
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsAssignableFrom<IEnumerable<PatientEntity>>(okResult.Value);
+            Assert.Equal(expectedPatients.Count, returnValue.Count());
+        }
+    }        
 }

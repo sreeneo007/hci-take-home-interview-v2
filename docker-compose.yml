@@ -13,10 +13,10 @@ services:
     working_dir: /app
     command: ["dotnet", "watch", "run"]
 
-  angular-client:
+  react-client:
     build:
       context: ./PatientAdministrationSystem.UI
       dockerfile: Dockerfile
-    container_name: angular-client
+    container_name: react-client
     ports:
-      - "4200:80"
+      - "3000:80"

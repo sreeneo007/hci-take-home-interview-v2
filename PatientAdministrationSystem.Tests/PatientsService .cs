@@ -60,6 +60,20 @@ namespace PatientAdministrationSystem.Tests
             Assert.NotNull(result);
             Assert.Empty(result);
         }
+              
+        [Fact]
+        public async Task SearchPatientsAsync_ShouldReturnEmpty_WhenQueryIsEmpty()
+        {
+            // Arrange
+            var query = "";
+
+            // Act
+            var result = await _patientsService.SearchPatientsAsync(query);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Empty(result);
+        }
 
     }
 }

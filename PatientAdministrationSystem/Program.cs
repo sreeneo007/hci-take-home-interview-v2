@@ -121,7 +121,7 @@ using (var serviceScope = app.Services.CreateScope())
         Id = new Guid("1ec2d3f7-8aa8-4bf5-91b8-045378919049"),
         FirstName = "Vinny",
         LastName = "Lawlor",
-        Email = "vinny.lawlor@hci.care",
+        Email = "vinny.lawlor@hci.care.com",
         PatientHospitals = new List<PatientHospitalRelation>
         {
             new()
@@ -138,7 +138,7 @@ using (var serviceScope = app.Services.CreateScope())
         Id = Guid.NewGuid(),
         FirstName = "test",
         LastName = "example",
-        Email = "test.Example@hci.care"
+        Email = "test.Example@hci.care.com"
         // No PatientHospitalRelation for this patient
     };
 
